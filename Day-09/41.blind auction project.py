@@ -12,31 +12,26 @@ logo = r'''
                       /_______________\\
 '''
 print(logo)
-once_more = True
-while once_more == True:
-    dictionary = {}
-    name = input("what is your name? ").lower()
-    bid = int(input("what is your bid? "))
-    dictionary[name] = bid
-    should_continue = input("are there any other biders? type 'yes' or 'no'.\n").lower()
-    if should_continue == "no":
-        once_more = False
-
-# TODO-1: Ask the user for input
-# TODO-2: Save data into dictionary {name: price}
-
-# TODO-3: Whether if new bids need to be added
-# TODO-4: Compare bids in dictionary
-def highest_bidder(bidding_dictionary):
+def find_highest_bidder(bidding_record):
     highest_bid = 0
-    for bidder in bidding_dictionary:
-        bid_amount = bidding_dictionary[bidder]
+    winner = ""
+    for bidder in bidding_record:
+        bid_amount = bidding_record[bidder]
         if bid_amount > highest_bid:
             highest_bid = bid_amount
             winner = bidder
-    return winner, highest_bid
+    print(f"The winner is {winner} with a bid of ${highest_bid}")
 
-winner, highest_bid = highest_bidder(dictionary)
-print(f"winner is {winner} with a highest bid of {highest_bid}")
+
+bids = {}
+continue_bidding = True
+while continue_bidding:
+    name = input("What is your name?: ")
+    price = int(input("What is your bid?: $"))
+    bids[name] = price
+    should_continue = input("Are there any other bidders? Type 'yes or 'no'.\n")
+    if should_continue == "no":
+        continue_bidding = False
+        find_highest_bidder(bids)
 
 
